@@ -5,13 +5,13 @@ This Manager can be useful if you want apply Live Wallpaper without permissions
 ![](https://img.shields.io/badge/API-21%2B-green) 
 
 
-###### 1. Declare Manger in your MainActivity Class
+##### 1. Declare Manger in your MainActivity Class
 ```java
 public static LiveWallpaperManager liveWallpaperManager;
 ```
 
 
-###### 2. Init Manager
+##### 2. Init Manager
 ```java
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public static LiveWallpaperManager liveWallpaperManager;
 	}
 ```
 
-###### 3. Dispatch touch event for Manager
+##### 3. Dispatch touch event for Manager
 ```java
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -30,15 +30,28 @@ public static LiveWallpaperManager liveWallpaperManager;
     }
 ```
 
+##### 4. Load all wallpapers form device
+```java
+WallpaperLoader wallpaperLoader = new WallpaperLoader(/* context */ context, new WallpaperLoader.IWallpaperLoader() {
+                    @Override
+                    public void onWallpaperLoaded(LiveWallpaperItem liveWallpaperItem) {
+                        // store LiveWallpaperItem for applying in future
+                    }
+                });
+                wallpaperLoader.execute();
+```
 
-
-###### 3. Apply live wallpaper to main activity window
+##### 5. Apply live wallpaper to main activity window
 ```java
 	liveWallpaperManager.setWallpaper(/*WallpaperInfo*/ wallpaperInfo);
 ```
+##### or
+```java
+	liveWallpaperManager.setWallpaper(/*LiveWallpaperItem*/ liveWallpaperItem);
+```
 
 
-###### 4. Done
+##### 6. Done
 
 
 
